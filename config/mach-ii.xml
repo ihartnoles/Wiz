@@ -1,0 +1,132 @@
+<mach-ii version="1.0">
+
+	<includes>
+		<include file="core/faculty/config/faculty.xml.cfm" />
+		<include file="core/semesters/config/semester.xml.cfm" />
+		<include file="core/departments/config/departments.xml.cfm" />
+		<include file="core/schools/config/school.xml.cfm" />
+	</includes>
+
+	<!-- PROPERTIES -->
+	<properties>
+		<property name="applicationRoot" value="/Wizard" />
+		<property name="defaultEvent" value="sayHello" />
+		<property name="eventParameter" value="event" />
+		<property name="parameterPrecedence" value="form" />
+		<property name="maxEvents" value="10" />
+		<property name="exceptionEvent" value="exceptionEvent" />
+		<property name="coldspringProperty" type="coldspring.machii.ColdspringProperty">
+			<parameters>
+				<parameter name="beanFactoryPropertyName" 		 value="serviceFactory"/>
+				<parameter name="configFile" 			  		 value="/opt/coldfusion10/cfusion/wwwroot/Wizard/config/coldspring/services.xml.cfm" />
+				<parameter name="resolveMachIIDependencies"      value="true"/>
+				<parameter name="placeFactoryInApplicationScope" value="true" /> 
+				<!-- Whether path is relative (mapped) or absolute - Default: FALSE 
+				<parameter name="configFilePathIsRelative" value="true"/>-->
+				<parameter name="resolveMachIIDependencies" 	 value="true"/>
+				<parameter name="placeFactoryInApplicationScope" value="true" /> 
+			</parameters>
+		</property>
+		<property name="dsn" value="xitracs" />
+	</properties>
+
+	<!-- PLUGINS -->
+	<plugins>
+		<!--
+		<plugin name="yourPluginName" type="fullyQualifiedDotDelimitedPathToCFC">
+			<parameters>
+				<parameter name="yourParameterName" value="yourParameterValue" />
+			</parameters>
+		</plugin>
+		-->
+	</plugins>
+
+	<!-- EVENT-FILTERS -->
+	<event-filters>
+	</event-filters>
+
+	<!-- LISTENERS -->
+	<listeners>
+		<listener name="loginListener" type="Wizard.listeners.LoginListener" />
+	</listeners>
+	
+	<!-- EVENT-HANDLERS -->
+	<event-handlers>
+
+		<!--
+		<event-handler event="hitDB" access="public">
+			<notify listener="loginListener" method="hitDB" resultArg="qStudents"  />
+			<view-page name="listStudents" />
+		</event-handler>
+	    -->
+
+		<event-handler event="sayHello" access="public">
+			<view-page name="hello" />
+		</event-handler>
+		
+		<!--
+		<event-handler event="showFaculty" access="public">
+			<notify listener="facultyListener" method="getFaculty" resultArg="qFaculty" />
+			<view-page name="faculty" />
+		</event-handler>
+
+		<event-handler event="showFacultyDetails" access="public">
+			<notify listener="facultyListener" method="getFacultyDetails" resultArg="qFacultyDetails" />
+			<view-page name="facultyDetails" />
+		</event-handler>
+	    -->
+
+
+		<event-handler event="showInputForm" access="public">
+			<view-page name="inputForm" />
+		</event-handler>
+		
+		<event-handler event="showLoginForm" access="public">
+			<notify listener="semesterListener" method="getSemestersQuery" resultArg="qSemesters" />
+			<view-page name="loginForm" contentArg="content" />
+			<view-page name="layout" />
+		</event-handler>
+
+		<event-handler event="showRegistrationForm" access="public">
+			<notify listener="departmentListener" method="getDepartmentsQuery" resultArg="qDepts" />
+			<notify listener="schoolListener" method="getSchoolsQuery" resultArg="qSchools" />
+			<view-page name="registrationForm" contentArg="content" />
+			<view-page name="layout" />
+		</event-handler>
+		
+		<!--
+		<event-handler event="processLoginAttempt" access="public">
+			<notify listener="loginListener" method="validateLogin" />
+		</event-handler>
+		
+		<event-handler event="loginSucceeded" access="private">
+			<view-page name="mainMenu" />
+		</event-handler>
+		
+		<event-handler event="loginFailed" access="private">
+			<announce event="showLoginForm" copyEventArgs="true" />
+		</event-handler>
+		-->
+		
+		<event-handler event="exceptionEvent" access="private">
+			<view-page name="exception" />
+		</event-handler>
+	</event-handlers>
+	
+	<!-- PAGE-VIEWS -->
+	<page-views>
+		<page-view name="layout" 		 	page="/views/layout.cfm"/>
+		<page-view name="hello" 			page="/views/hello.cfm" />
+		<page-view name="faculty" 			page="/views/listFaculty.cfm" />
+		<page-view name="facultyDetails" 	page="/views/facultyDetails.cfm" />
+		<page-view name="loginForm" 		page="/views/login_form.cfm" />
+		<page-view name="registrationForm" 	page="/views/registration_form.cfm" />
+		<!--
+			<page-view name="listStudents" page="/views/listStudents.cfm" /> 
+		-->
+		<page-view name="inputForm" page="/views/inputForm.cfm" />
+		
+		<page-view name="mainMenu" page="/views/mainMenu.cfm" />
+		<page-view name="exception" page="/views/exception.cfm" />
+	</page-views>
+</mach-ii>
