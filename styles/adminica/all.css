@@ -678,7 +678,7 @@ a.logo span {
   visibility: hidden;
 }
 a.logo {
-  background: url(../../images/interface/adminica_logo_black-trans.png) no-repeat;
+  background: transparent url(../../images/interface/faulogo05.gif) no-repeat;
   display: block;
   height: 87px;
   width: 180px;
@@ -2867,7 +2867,7 @@ Login Box
   border-width: none;
 }
 a#login_logo {
-  background: transparent url(../../images/interface/adminica_logo_black-trans.png) 0 -15px no-repeat;
+  background: transparent url(../../images/interface/faulogo05.gif) 0 -15px no-repeat;
   position: relative;
   display: block;
   height: 48px;
@@ -2878,6 +2878,20 @@ a#login_logo {
 a#login_logo span {
   visibility: hidden;
 }
+
+a#small_logo {
+  background: transparent url(../../images/interface/faulogo05.gif) 0 -10px no-repeat;
+  position: relative;
+  display: block;
+  height: 88px;
+  width: 154px;
+  margin-top: 1px;
+  float: left;
+}
+a#small_logo span {
+  visibility: hidden;
+}
+
 .slider_unlock {
   height: 32px;
   box-sizing: border-box;

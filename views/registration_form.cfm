@@ -3,13 +3,15 @@
 	qSchools = request.event.getArg('qSchools');	
 </cfscript>
 
+
 <div id="pjax">
 		<div id="wrapper">
-			<div class="isolate">
-				<div class="center">
-<div class="box light grid_16">
+			<div class="isolate">				
+					<div class="main_container full_size container_16 clearfix">
+						<div class="box">
 						<div class="block">
-							<a href="index.php" id="login_logo" width="154" height="80"><span>FAU</span></a>
+							<a href="index.cfm?event=showLoginform" id="small_logo" width="154" height="80"><span>FAU</span></a>
+							<br>
 							<h2 class="section">Wizard Registration Form</h2>
 							
 							<div class="toggle_container">
@@ -46,7 +48,7 @@
 							</div>
 							</div>
 
-							<form class="validate_form">
+							<form action="index.cfm?event=showDashboard" method="post" class="validate_form">
 							
 							<fieldset class="label_side top">
 								<label for="username_field">FAU Username</label>
@@ -82,33 +84,6 @@
 								</div>
 							</fieldset>
 
-							<!---
-							<fieldset class="label_side top">
-								<label for="required_field">Text Field<span>Regular field</span></label>
-								<div>
-									<input id="required_field" name="required_field" type="text" class="required">
-									<div class="required_tag"></div>
-								</div>
-							</fieldset>
-
-							
-
-							<fieldset class="label_side">
-								<label for="required_textarea">Textarea<span>Autogrow Textarea</span></label>
-								<div class="clearfix">
-									<textarea id="required_textarea" name="required_textarea" class="autogrow required"></textarea>
-									<div class="required_tag"></div>
-								</div>
-							</fieldset>
-
-							<fieldset class="label_side">
-								<label for="required_email">Email Address</label>
-								<div>
-									<input type="text" id="required_email" name="required_email" class="required email">
-									<div class="required_tag"></div>
-								</div>
-							</fieldset>
-							--->
 
 							<div class="button_bar clearfix">
 								<button class="blue" type="submit">
@@ -120,8 +95,9 @@
 							</form>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
+	<!--- loadingOverlay --->
+   <cfinclude template="../../Wizard/views/loadingOverlay.cfm">

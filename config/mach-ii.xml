@@ -10,7 +10,7 @@
 	<!-- PROPERTIES -->
 	<properties>
 		<property name="applicationRoot" value="/Wizard" />
-		<property name="defaultEvent" value="sayHello" />
+		<property name="defaultEvent" value="showLoginForm" />
 		<property name="eventParameter" value="event" />
 		<property name="parameterPrecedence" value="form" />
 		<property name="maxEvents" value="10" />
@@ -93,6 +93,12 @@
 			<view-page name="registrationForm" contentArg="content" />
 			<view-page name="layout" />
 		</event-handler>
+
+		<event-handler event="showDashboard" access="public">
+			<notify listener="schoolListener" method="getSchoolsQuery" resultArg="qSchools" />
+			<view-page name="dashboard" contentArg="content" />
+			<view-page name="dashboardlayout" />
+		</event-handler>
 		
 		<!--
 		<event-handler event="processLoginAttempt" access="public">
@@ -116,11 +122,13 @@
 	<!-- PAGE-VIEWS -->
 	<page-views>
 		<page-view name="layout" 		 	page="/views/layout.cfm"/>
+		<page-view name="dashboardlayout" 	page="/views/dashboardlayout.cfm"/>
 		<page-view name="hello" 			page="/views/hello.cfm" />
 		<page-view name="faculty" 			page="/views/listFaculty.cfm" />
 		<page-view name="facultyDetails" 	page="/views/facultyDetails.cfm" />
 		<page-view name="loginForm" 		page="/views/login_form.cfm" />
 		<page-view name="registrationForm" 	page="/views/registration_form.cfm" />
+		<page-view name="dashboard" 		page="/views/dashboard.cfm" />
 		<!--
 			<page-view name="listStudents" page="/views/listStudents.cfm" /> 
 		-->
